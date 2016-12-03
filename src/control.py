@@ -9,6 +9,7 @@ from geometry_msgs.msg import Twist
 from constants import DELTA_T, STEPS
 from controller import create_controller
 from plotter.simulation_plotter import SimulationPlotter
+from util.util import TrajectoryName, ControllerName
 
 
 def get_pose(message):
@@ -40,6 +41,27 @@ if __name__ == '__main__':
         print('Try: rosrun trajectory_tracking control.py <trajectory> <controller> <simulation-time>')
         sys.exit(-1)
 
+    arguments = sys.argv[1:]
+
+    if arguments[0] not in TrajectoryName.__members__:
+        print('ERROR: Please enter a valid trajectory:')
+        for trajectory in TrajectoryName.__members__:
+            print('\t' + trajectory)
+        sys.exit(-2)
+
+    if arguments[1] not in ControllerName.__members__:
+        print('ERROR: Please enter a valid controller:')
+        for controller in ControllerName.__members__:
+            print('\t' + controller)
+        sys.exit(-3)
+
+    try:
+        if float(arguments[2]) <= 0.0:
+            raise RuntimeError
+    except:
+        print('ERROR: Please enter a positive number for simulation time!')
+        sys.exit(-4)
+
     rospy.init_node('control')
     current_pose = None
     current_twist = None
@@ -64,6 +86,6 @@ if __name__ == '__main__':
 
     plotter.plot_results()
     plotter.export_results()
-    print ('Data was exported successfully!')
+    print('Data was exported successfully!')
 
     rospy.spin()
