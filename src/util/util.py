@@ -1,9 +1,24 @@
 #!/usr/bin/env python
+from enum import Enum, unique
+
 from constants import TRAJECTORY, SIMULATION_TIME_IN_SECONDS
 from trajectory.astroid_trajectory import AstroidTrajectory
 from trajectory.circular_trajectory import CircularTrajectory
 from trajectory.linear_trajectory import LinearTrajectory
 from trajectory.squared_trajectory import SquaredTrajectory
+
+@unique
+class TrajectoryName(Enum):
+    linear = 'linear'
+    circular = 'circular'
+    squared = 'squared'
+    astroid = 'astroid'
+
+
+@unique
+class ControllerName(Enum):
+    euler = 'euler'
+    pid = 'pid'
 
 
 def create_trajectory():
