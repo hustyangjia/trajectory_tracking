@@ -2,6 +2,7 @@
 from __future__ import print_function
 import rospy
 import time
+import sys
 from gazebo_msgs.msg import ModelStates
 from geometry_msgs.msg import Twist
 
@@ -34,6 +35,11 @@ def compute_control_actions():
 
 
 if __name__ == '__main__':
+    if len(sys.argv) != 4:
+        print('Missing arguments!' if len(sys.argv) < 4 else 'Too much arguments!')
+        print('Try: rosrun trajectory_tracking control.py <trajectory> <controller> <simulation-time>')
+        sys.exit(-1)
+
     rospy.init_node('control')
     current_pose = None
     current_twist = None
