@@ -12,21 +12,21 @@ class PlotData:
         self.t = []
         self.x_ref = []
         self.y_ref = []
+        self.theta_ref = []
         self.x = []
         self.y = []
         self.theta = []
-        self.theta_ref = []
         self.v_c = []
         self.w_c = []
 
         self.file_array_name = {
             't.txt': self.t,
-            'x.txt': self.x,
             'x_ref.txt': self.x_ref,
-            'y.txt': self.y,
             'y_ref.txt': self.y_ref,
-            'theta.txt': self.theta,
             'theta_ref.txt': self.theta_ref,
+            'x.txt': self.x,
+            'y.txt': self.y,
+            'theta.txt': self.theta,
             'v_c.txt': self.v_c,
             'w_c.txt': self.w_c,
         }
