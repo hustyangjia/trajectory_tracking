@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-TRAJECTORY = 'astroid'
+TRAJECTORY = 'linear'
 CONTROLLER = 'euler'
 
 # control constants
